@@ -40,11 +40,10 @@ clean:
 .python: .mkdir
 	cp -av $(CPYTHON_DIR)/_install/* $(INITRAMFS)
 
-.init: .mkdir 
-	cp init $(INITRAMFS)/init
-	chmod +x $(INITRAMFS)/init
+.base_files: .mkdir 
+	cp -av initramfs/* $(INITRAMFS)
 
-.mkinitramfs: .busybox .init .python
+.mkinitramfs: .busybox .base_files .python
 	cd $(INITRAMFS) ; \
 	find . -print0 | cpio --null -ov --format=newc \
 	| gzip -9 > ../initramfs.cpio.gz

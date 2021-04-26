@@ -3,6 +3,7 @@
 mount -t proc none /proc
 mount -t sysfs none /sys
 
+mknod -m 0666 /dev/tty c 5 0
 mknod -m 0666 /dev/random c 1 8
 mknod -m 0666 /dev/urandom c 1 9
 chown root:root /dev/random /dev/urandom
